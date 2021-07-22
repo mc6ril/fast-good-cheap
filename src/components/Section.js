@@ -6,55 +6,28 @@ const Section = (props) => {
     const [box1, setBox1] = useState(false);
     const [box2, setBox2] = useState(false);
     const [box3, setBox3] = useState(false);
-    console.log('initialement :', box1, box2, box3);
 
     const validateBox1 = () => {
-        let newState = box1;
-        if (newState) {
-            newState = false;
-        } else {
-            newState = true;
-        }
-
+        let newState = box1 ? false : true;
         setBox1(newState);
+        if (newState && box2 && box3) {
+            setBox2(false);
+        }
     };
     const validateBox2 = () => {
-        let newState = box2;
-        if (newState) {
-            newState = false;
-        } else {
-            newState = true;
-        }
+        let newState = box2 ? false : true;
         setBox2(newState);
+        if (newState && box1 && box3) {
+            setBox3(false);
+        }
     };
     const validateBox3 = () => {
-        let newState = box3;
-        if (newState === false) {
-            newState = true;
-        } else {
-            newState = false;
-        }
+        let newState = box3 ? false : true;
         setBox3(newState);
-    };
-
-    // const valueChekedOne = () => {
-    if (validateBox1) {
-        if (box1 && box2 && box3) {
-            setBox2(false);
-        }
-    }
-    if (validateBox2) {
-        if (box1 && box2 && box3) {
+        if (newState && box2 && box1) {
             setBox1(false);
         }
-    }
-    if (validateBox3) {
-        if (box1 && box2 && box3) {
-            setBox2(false);
-        }
-    }
-
-    console.log(box1, box2, box3);
+    };
 
     return (
         <section>
